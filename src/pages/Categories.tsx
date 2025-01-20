@@ -3,6 +3,7 @@ import { Category } from "@components/eCommerce";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { useEffect } from "react";
 import actGetCategories from "@store/categories/act/actGetCategories";
+import Loading from "@components/feedback/Loading/Loading";
 
 const Categories = () => {
   const dispatch = useAppDispatch();
@@ -27,10 +28,9 @@ const Categories = () => {
       : "There are no categories";
   return (
     <Container>
-      <Row>
-        {loading === "pending" ? "Loading..." : categoriesList}
-        {error && <div>{error}</div>}
-      </Row>
+      <Loading error={error} loading={loading}>
+        <Row>{categoriesList}</Row>
+      </Loading>
     </Container>
   );
 };

@@ -9,7 +9,7 @@ const Product = ({ img, price, title }: IProduct) => {
       <div className={productImg}>
         <img src={img} alt={title} />
       </div>
-      <h2>{title}</h2>
+      <h2 title={title}>{title}</h2>
       <h3>{price}</h3>
       <Button variant="info" style={{ color: "white" }}>
         Add to cart

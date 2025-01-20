@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import actGetProducts from "@store/products/act/actGetProductsByCat";
 import { useParams } from "react-router";
 import { productsCleanUp } from "@store/products/productsSlice";
+import Loading from "@components/feedback/Loading/Loading";
 const Products = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
@@ -13,9 +14,9 @@ const Products = () => {
   );
   useEffect(() => {
     dispatch(actGetProducts(params.prefix as string));
-    return () => { 
-      dispatch(productsCleanUp())
-    }
+    return () => {
+      dispatch(productsCleanUp());
+    };
   }, [dispatch, params.prefix]);
   const productsList =
     records.length > 0
@@ -32,10 +33,9 @@ const Products = () => {
       : "There are no products";
   return (
     <Container>
-      <Row>
-        {loading === "pending" ? "Loading..." : productsList}
-        {error && <div>{error}</div>}
-      </Row>
+      <Loading error={error} loading={loading}>
+        <Row>{productsList}</Row>
+      </Loading>
     </Container>
   );
 };
