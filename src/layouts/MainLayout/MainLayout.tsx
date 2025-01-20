@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap"
 import styles from "./styles.module.css"
-import Header from "../../components/common/Header/Header"
+import { Footer, Header } from "../../components/common"
 const {container,wrapper} = styles
 const MainLayout = () => {
   return (
@@ -9,6 +9,7 @@ const MainLayout = () => {
           <div className={wrapper}>
               
           </div>
+          <Footer/>
     </Container>
   )
 }
