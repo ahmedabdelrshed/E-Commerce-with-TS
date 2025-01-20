@@ -22,7 +22,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="categories" element={<Categories />} />
         <Route
-          path="products/:prefix"
+          path="categories/products/:prefix"
           element={<Products />}
           loader={({ params }) => {
             if (

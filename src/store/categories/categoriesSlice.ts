@@ -1,14 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import actGetCategories from "./act/actGetCategories";
+import { ICategory, TLoading } from "@customTypes/index";
 
 interface ICategories {
-    records: {
-        id: number,
-        title: string,
-        img: string,
-        prefix: string,
-    }[],
-    loading: 'idle' | 'pending' | 'succeeded' | 'failed'
+    records:ICategory[],
+    loading: TLoading
     error: string | null,
 }
 
