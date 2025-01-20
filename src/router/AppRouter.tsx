@@ -9,11 +9,11 @@ import MainLayout from "../layouts/MainLayout/MainLayout";
 // Pages
 import Home from "@pages/Home";
 import Categories from "@pages/Categories";
-import Product from "@pages/Products";
 import AboutUs from "@pages/AboutUs";
 import Login from "@pages/Login";
 import Register from "@pages/Register";
 import Error from "@pages/Error";
+import Products from "@pages/Products";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,7 +23,7 @@ const router = createBrowserRouter(
         <Route path="categories" element={<Categories />} />
         <Route
           path="products/:prefix"
-          element={<Product />}
+          element={<Products />}
           loader={({ params }) => {
             if (
               typeof params.prefix !== "string" ||
