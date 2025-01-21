@@ -12,4 +12,5 @@ export interface IProduct {
     price: string;
     img: string;
     cat_prefix: string;
+    quantity?: number;
 }
