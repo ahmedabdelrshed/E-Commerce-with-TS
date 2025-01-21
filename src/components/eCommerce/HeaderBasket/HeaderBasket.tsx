@@ -1,13 +1,10 @@
 import Logo from "@assets/svg/cart.svg?react";
 import styles from "./basketStyles.module.css";
 import { useAppSelector } from "@store/hooks";
+import { getCartTotalQuantity } from "@store/cart/cartSlice";
 const { basketQuantity, basketContainer } = styles;
 const HeaderBasket = () => {
-  const { items } = useAppSelector((state) => state.cart);
-  const totalItemsQuantity = Object.values(items).reduce(
-    (acc, item) => acc + item,
-    0
-  );
+  const totalItemsQuantity = useAppSelector(getCartTotalQuantity);
   return (
     <div className={basketContainer}>
       <Logo title="basket-logo" />

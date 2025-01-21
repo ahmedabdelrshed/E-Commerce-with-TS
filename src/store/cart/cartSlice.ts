@@ -1,5 +1,6 @@
 import { IProduct } from "@customTypes/index";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "@store/store";
 
 // Define your initial state here
 interface ICart {
@@ -25,6 +26,12 @@ const cartSlice = createSlice({
         }
     }
 })
-
+export const getCartTotalQuantity = createSelector((state: RootState) => state.cart.items, (items) => {
+    const totalItemsQuantity = Object.values(items).reduce(
+        (acc, item) => acc + item,
+        0
+    );
+    return totalItemsQuantity
+})
 export default cartSlice.reducer
 export const { addToCart } = cartSlice.actions
