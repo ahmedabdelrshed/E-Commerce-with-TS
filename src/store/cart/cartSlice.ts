@@ -26,7 +26,7 @@ const cartSlice = createSlice({
         }
     }
 })
-export const getCartTotalQuantity = createSelector((state: RootState) => state.persistCart.items, (items) => {
+export const getCartTotalQuantity = createSelector((state: RootState) => state.cart.items, (items) => {
     const totalItemsQuantity = Object.values(items).reduce(
         (acc, item) => acc + item,
         0
