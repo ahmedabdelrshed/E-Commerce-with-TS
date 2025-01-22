@@ -7,10 +7,11 @@ export interface ICategory {
 export type TLoading = 'pending' | 'idle' | 'succeeded' | 'failed';
 
 export interface IProduct {
-    id?: number;
+    id: number;
     title: string;
     price: string;
     img: string;
     cat_prefix: string;
     quantity?: number;
+    max: number;
 }

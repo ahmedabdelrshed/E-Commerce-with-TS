@@ -3,12 +3,14 @@ import styles from "./productStyle.module.css";
 import { IProduct } from "@customTypes/index";
 import { useAppDispatch } from "@store/hooks";
 import { addToCart } from "@store/cart/cartSlice";
-import { useEffect, useState } from "react";
-const { product, productImg } = styles;
+import { memo, useEffect, useState } from "react";
+const { product, productImg, maximumNotice } = styles;
 
-const Product = ({ id, img, price, title }: IProduct) => {
+const Product = ({ id, img, price, title, max, quantity }: IProduct) => {
   const dispatch = useAppDispatch();
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+  const currentRemainingQuantity = max - (quantity ?? 0);
+  const isQuantityMax = currentRemainingQuantity <= 0 ? true : false;
   useEffect(() => {
     if (!isBtnDisabled) return;
     const debounce = setTimeout(() => {
@@ -28,11 +30,16 @@ const Product = ({ id, img, price, title }: IProduct) => {
       </div>
       <h2 title={title}>{title}</h2>
       <h3>{price}</h3>
+      <p className={maximumNotice}>
+        {isQuantityMax
+          ? "You reach to the limit"
+          : `You can add ${currentRemainingQuantity} item(s)`}
+      </p>
       <Button
         variant="info"
         style={{ color: "white" }}
         onClick={onAddToCart}
-        disabled={isBtnDisabled}
+        disabled={isBtnDisabled || isQuantityMax}
       >
         {isBtnDisabled ? (
           <>
@@ -46,4 +53,4 @@ const Product = ({ id, img, price, title }: IProduct) => {
   );
 };
 
-export default Product;
+export default memo(Product);
