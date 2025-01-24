@@ -2,7 +2,10 @@ import { Heading } from "@components/common";
 import CartItemList from "@components/eCommerce/CartItemList/CartItemList";
 import Loading from "@components/feedback/Loading/Loading";
 import getProductsByIds from "@store/cart/act/actGetProductsByIds";
-import { changeQuantityOfCartItem } from "@store/cart/cartSlice";
+import {
+  changeQuantityOfCartItem,
+  removeCartItem,
+} from "@store/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { useCallback, useEffect } from "react";
 
@@ -25,6 +28,12 @@ const Cart = () => {
     },
     [dispatch]
   );
+  const removeProductHandler = useCallback(
+    (id: number) => {
+      dispatch(removeCartItem(id));
+    },
+    [dispatch]
+  );
   return (
     <>
       <Heading>Cart</Heading>
@@ -32,6 +41,7 @@ const Cart = () => {
         <CartItemList
           products={products}
           changeQuantityHandlers={changeQuantityHandlers}
+          removeProductHandler={removeProductHandler}
         />
       </Loading>
     </>

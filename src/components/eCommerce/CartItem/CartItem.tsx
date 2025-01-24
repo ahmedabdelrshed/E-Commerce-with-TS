@@ -7,6 +7,7 @@ const { cartItem, product, productImg, productInfo, cartItemSelection } =
   styles;
 type cartItemProps = IProduct & {
   changeQuantityHandlers: (id: number, quantity: number) => void;
+  removeProductHandler: (id: number) => void;
 };
 const CartItem = ({
   id,
@@ -16,8 +17,8 @@ const CartItem = ({
   max,
   quantity,
   changeQuantityHandlers,
+  removeProductHandler
 }: cartItemProps) => {
-  console.log('object')
   // Renders options List
   const renderOptions = Array(max)
     .fill(0)
@@ -32,6 +33,9 @@ const CartItem = ({
   const onChangeQuantity = (e: React.ChangeEvent<HTMLSelectElement>) => {
     changeQuantityHandlers(id, +e.target.value);
   };
+  const onRemoveProduct = () => {
+    removeProductHandler(id);
+  };
   return (
     <div className={cartItem}>
       <div className={product}>
@@ -45,6 +49,7 @@ const CartItem = ({
             variant="danger"
             style={{ color: "white", width: "100px" }}
             className="mt-auto"
+            onClick={onRemoveProduct}
           >
             Remove
           </Button>
