@@ -11,7 +11,6 @@ const getProductsByIds = createAsyncThunk('cart/getProductsByIds', async (_, thu
         return fulfillWithValue([])
     try {
         const response = await axios.get(`/products?${ids}`)
-        console.log(response)
         return response.data
     } catch (error) {
         if (axios.isAxiosError(error))

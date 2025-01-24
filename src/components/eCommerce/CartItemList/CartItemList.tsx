@@ -3,9 +3,16 @@ import CartItem from "../CartItem/CartItem";
 
 interface IProps {
   products: IProduct[];
+  changeQuantityHandlers: (id: number, quantity: number) => void;
 }
-const CartItemList = ({ products: items }: IProps) => {
-    const renderList = items.map((item) => <CartItem key={item.id} {...item} />);
+const CartItemList = ({ products, changeQuantityHandlers }: IProps) => {
+  const renderList = products.map((item) => (
+    <CartItem
+      key={item.id}
+      {...item}
+      changeQuantityHandlers={changeQuantityHandlers}
+    />
+  ));
   return <>{renderList}</>;
 };
 
