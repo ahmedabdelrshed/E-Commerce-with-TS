@@ -1,15 +1,20 @@
-import { IProduct } from "@customTypes/index";
+import { IProduct, TLoading } from "@customTypes/index";
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@store/store";
+import getProductsByIds from "./act/actGetProductsByIds";
 
 // Define your initial state here
 interface ICart {
-    items: { [key: number]: number }
+    items: { [key: string]: number }
     productsInfo: IProduct[]
+    loading: TLoading
+    error: string | null
 }
 const initialState: ICart = {
     items: {},
     productsInfo: [],
+    loading: 'idle',
+    error: null
 }
 const cartSlice = createSlice({
     name: "cart",
@@ -24,6 +29,21 @@ const cartSlice = createSlice({
                 state.items[id] = 1
             }
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(getProductsByIds.pending, (state) => {
+            state.loading = 'pending'
+            state.error = null
+
+        })
+        builder.addCase(getProductsByIds.fulfilled, (state, action) => {
+            state.loading = 'succeeded'
+            state.productsInfo = action.payload
+        })
+        builder.addCase(getProductsByIds.rejected, (state, action) => {
+            state.loading = 'failed'
+            state.error = action.payload as string
+        })
     }
 })
 export const getCartTotalQuantity = createSelector((state: RootState) => state.cart.items, (items) => {

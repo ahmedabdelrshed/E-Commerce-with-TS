@@ -1,11 +1,11 @@
-import {  IProduct } from "@customTypes/index";
+import { IProduct } from "@customTypes/index";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const actGetProducts = createAsyncThunk('products/actGetProductsByCat', async (prefix:string, thunAPI) => {
+const actGetProducts = createAsyncThunk('products/actGetProductsByCat', async (prefix: string, thunAPI) => {
     const { rejectWithValue } = thunAPI
     try {
-        const response = await axios.get<IProduct[]>(`http://localhost:5000/products?cat_prefix=${prefix}`)
+        const response = await axios.get<IProduct[]>(`/products?cat_prefix=${prefix}`)
 
         return response.data
     } catch (error) {

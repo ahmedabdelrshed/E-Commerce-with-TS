@@ -12,20 +12,20 @@ const GridList = <T extends HasID>({
   records,
   renderItem,
 }: TGridListProps<T>) => {
-  const categoriesList =
+  const itemsList =
     records.length > 0
-      ? records.map((category) => (
+      ? records.map((record) => (
           <Col
             xs={6}
             md={3}
             className="d-flex justify-content-center mb-5 mt-2"
-            key={category.id}
+            key={record.id}
           >
-            {renderItem(category)}
+            {renderItem(record)}
           </Col>
         ))
       : "There are no categories";
-  return <Row>{categoriesList}</Row>;
+  return <Row>{itemsList}</Row>;
 };
 
 export default GridList;
