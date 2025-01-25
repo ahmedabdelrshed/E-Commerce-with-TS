@@ -5,13 +5,23 @@ import { useAppDispatch } from "@store/hooks";
 import { addToCart } from "@store/cart/cartSlice";
 import { memo, useEffect, useState } from "react";
 import Like from "@assets/svg/like.svg?react";
-// import LikeFill from "@assets/svg/like-fill.svg?react";
+import actLikeToggle from "@store/wishlist/act/actLikeToggle";
+import LikeFill from "@assets/svg/like-fill.svg?react";
 
 const { product, productImg, maximumNotice, whishList } = styles;
 
-const Product = ({ id, img, price, title, max, quantity }: IProduct) => {
+const Product = ({
+  id,
+  img,
+  price,
+  title,
+  max,
+  quantity,
+  isLiked,
+}: IProduct) => {
   const dispatch = useAppDispatch();
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+  const [isLikedLoading, setIsLikedLoading] = useState(false);
   const currentRemainingQuantity = max - (quantity ?? 0);
   const isQuantityMax = currentRemainingQuantity <= 0 ? true : false;
   useEffect(() => {
@@ -26,10 +36,27 @@ const Product = ({ id, img, price, title, max, quantity }: IProduct) => {
     dispatch(addToCart(id));
     setIsBtnDisabled(true);
   };
+  const onLikeToggle = () => {
+    setIsLikedLoading(true);
+    dispatch(actLikeToggle(id))
+      .unwrap()
+      .then(() => {
+        setIsLikedLoading(false);
+      })
+      .catch(() => {
+        setIsLikedLoading(false);
+      });
+  };
   return (
     <div className={product}>
-      <div className={whishList}>
-        <Like />
+      <div className={whishList} onClick={onLikeToggle}>
+        {isLikedLoading ? (
+          <Spinner animation="border" size="sm" variant="primary" />
+        ) : isLiked ? (
+          <LikeFill />
+        ) : (
+          <Like />
+        )}
       </div>
       <div className={productImg}>
         <img src={img} alt={title} />

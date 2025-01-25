@@ -13,10 +13,12 @@ const Products = () => {
   const { error, loading, records } = useAppSelector(
     (state) => state.productsSlice
   );
+  const {itemsId} = useAppSelector(state => state.whishList)
   const cartItems = useAppSelector((state) => state.cart.items);
-  const productsWithQuantityInCart = records.map((record) => ({
+  const productsWithFullInfo = records.map((record) => ({
     ...record,
     quantity: cartItems[record.id] || 0,
+    isLiked: itemsId.includes(record.id),
   }));
   useEffect(() => {
     dispatch(actGetProducts(params.prefix as string));
@@ -30,7 +32,7 @@ const Products = () => {
       <Heading><span className="text-capitalize">{ params.prefix}</span> Products</Heading>
       <Loading error={error} loading={loading}>
         <GridList
-          records={productsWithQuantityInCart}
+          records={productsWithFullInfo}
           renderItem={(record) => <Product {...record} />}
         />
       </Loading>

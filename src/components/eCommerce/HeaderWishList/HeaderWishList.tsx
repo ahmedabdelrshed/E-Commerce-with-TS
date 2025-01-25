@@ -3,11 +3,14 @@ import styles from "./wishListStyles.module.css";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { useAppSelector } from "@store/hooks";
 const { container, totalNum, pumpAnimate, iconWrapper } = styles;
 const HeaderWishList = () => {
   const navigate = useNavigate();
   const [isAnimated, setISAnimated] = useState(false);
-  const totalItemsQuantity = 0;
+  const totalItemsQuantity = useAppSelector(
+    (state) => state.whishList.itemsId.length
+  );
   const quantityStyle = `${totalNum} ${isAnimated ? pumpAnimate : ""}`;
   useEffect(() => {
     if (!totalItemsQuantity) return;

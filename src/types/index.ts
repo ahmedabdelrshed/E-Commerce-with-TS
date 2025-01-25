@@ -14,4 +14,5 @@ export interface IProduct {
     cat_prefix: string;
     quantity?: number;
     max: number;
+    isLiked?: boolean;
 }
