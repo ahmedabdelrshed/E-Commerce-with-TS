@@ -1,14 +1,13 @@
-import Logo from "@assets/svg/cart.svg?react";
-import styles from "./basketStyles.module.css";
-import { useAppSelector } from "@store/hooks";
-import { getCartTotalQuantity } from "@store/cart/cartSlice";
+import Logo from "@assets/svg/whishlist.svg?react";
+import styles from "./wishListStyles.module.css";
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 const { container, totalNum, pumpAnimate, iconWrapper } = styles;
-const HeaderBasket = () => {
+const HeaderWishList = () => {
   const navigate = useNavigate();
   const [isAnimated, setISAnimated] = useState(false);
-  const totalItemsQuantity = useAppSelector(getCartTotalQuantity);
+  const totalItemsQuantity = 0;
   const quantityStyle = `${totalNum} ${isAnimated ? pumpAnimate : ""}`;
   useEffect(() => {
     if (!totalItemsQuantity) return;
@@ -26,9 +25,9 @@ const HeaderBasket = () => {
           <div className={quantityStyle}>{totalItemsQuantity}</div>
         )}
       </div>
-      <h3>Cart</h3>
+      <h3>WishList</h3>
     </div>
   );
 };
 
-export default HeaderBasket;
+export default HeaderWishList;

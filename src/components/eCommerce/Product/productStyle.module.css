@@ -1,8 +1,9 @@
 .product {
-  width: 120px;
+  width: 130px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
 .productImg {
@@ -14,6 +15,7 @@
 .productImg img {
   display: block;
   height: 100%;
+  width: 100%;
 }
 
 .product h2 {
@@ -33,4 +35,21 @@
 .maximumNotice {
   font-size: 12px;
   margin-bottom: 7px;
+}
+
+.whishList {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  background-color: white;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.whishList:hover {
+  box-shadow: 0 0 10px -3px rgba(0, 0, 0, 0.4);
 }

@@ -4,7 +4,10 @@ import { IProduct } from "@customTypes/index";
 import { useAppDispatch } from "@store/hooks";
 import { addToCart } from "@store/cart/cartSlice";
 import { memo, useEffect, useState } from "react";
-const { product, productImg, maximumNotice } = styles;
+import Like from "@assets/svg/like.svg?react";
+// import LikeFill from "@assets/svg/like-fill.svg?react";
+
+const { product, productImg, maximumNotice, whishList } = styles;
 
 const Product = ({ id, img, price, title, max, quantity }: IProduct) => {
   const dispatch = useAppDispatch();
@@ -25,6 +28,9 @@ const Product = ({ id, img, price, title, max, quantity }: IProduct) => {
   };
   return (
     <div className={product}>
+      <div className={whishList}>
+        <Like />
+      </div>
       <div className={productImg}>
         <img src={img} alt={title} />
       </div>
