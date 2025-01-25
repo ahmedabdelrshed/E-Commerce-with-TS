@@ -21,7 +21,7 @@ const HeaderWishList = () => {
     return () => clearTimeout(debounce);
   }, [totalItemsQuantity]);
   return (
-    <div className={container} onClick={() => navigate("/cart")}>
+    <div className={container} onClick={() => navigate("/wishlist")}>
       <div className={iconWrapper}>
         <Logo title="basket icon" />
         {totalItemsQuantity > 0 && (

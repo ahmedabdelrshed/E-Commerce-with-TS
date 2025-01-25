@@ -12,11 +12,16 @@ const persistCartConfig = {
   storage,
   whiteList: ['items']
 }
+const persistWishlistConfig = {
+  key: "wishlist",
+  storage,
+  whitelist: ["itemsId"]
+}
 const rootReducer = combineReducers({
   categoriesSlice,
   productsSlice,
   cart: persistReducer(persistCartConfig, cart),
-  whishList
+  whishList: persistReducer(persistWishlistConfig, whishList)
 })
 export const store = configureStore({
   reducer: rootReducer,

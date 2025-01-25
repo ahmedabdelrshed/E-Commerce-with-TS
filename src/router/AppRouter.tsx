@@ -15,6 +15,7 @@ import Register from "@pages/Register";
 import Error from "@pages/Error";
 import Products from "@pages/Products";
 import Cart from "@pages/Cart";
+import WishList from "@pages/WishList";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
         />
         <Route path="about-us" element={<AboutUs />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<WishList />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Route>

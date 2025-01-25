@@ -37,6 +37,8 @@ const Product = ({
     setIsBtnDisabled(true);
   };
   const onLikeToggle = () => {
+    if (isLikedLoading)
+      return;
     setIsLikedLoading(true);
     dispatch(actLikeToggle(id))
       .unwrap()
