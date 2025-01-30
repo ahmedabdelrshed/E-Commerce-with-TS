@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IProduct, TLoading } from "@customTypes/index";
 import actGetProducts from "./act/actGetProductsByCat";
+import { isString } from "@customTypes/guards";
 
 interface IProducts {
     records: IProduct[],
@@ -33,7 +34,8 @@ const productsSlice = createSlice({
         })
         builder.addCase(actGetProducts.rejected, (state, action) => {
             state.loading = 'failed'
-            state.error = action.payload as string
+            if (isString(action.payload))
+                state.error = action.payload
         })
     }
 })
