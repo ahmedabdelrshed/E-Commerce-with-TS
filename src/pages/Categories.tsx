@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import actGetCategories from "@store/categories/act/actGetCategories";
 import Loading from "@components/feedback/Loading/Loading";
 import { GridList, Heading } from "@components/common";
+import { cleanUpCategories } from "@store/categories/categoriesSlice";
 
 const Categories = () => {
   const dispatch = useAppDispatch();
@@ -12,12 +13,15 @@ const Categories = () => {
     (state) => state.categoriesSlice
   );
   useEffect(() => {
-    if (!records.length) dispatch(actGetCategories());
-  }, [dispatch, records]);
+    dispatch(actGetCategories());
+    return () => {
+      dispatch(cleanUpCategories());
+    };
+  }, [dispatch]);
 
   return (
     <Container>
-      <Heading>Categories</Heading>
+      <Heading title="Categories"/>
       <Loading error={error} loading={loading}>
         <GridList
           records={records}

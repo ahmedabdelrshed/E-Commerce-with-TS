@@ -26,7 +26,7 @@ const WishList = () => {
   }));
   return (
     <div>
-      <Heading>Your WishList</Heading>
+      <Heading title="Your Wishlist" />
       <Loading error={error} loading={loading}>
         {productsFullInfo.length ? (
           <GridList

@@ -19,6 +19,7 @@ const Product = ({
   quantity,
   isLiked,
 }: IProduct) => {
+  console.log('object')
   const dispatch = useAppDispatch();
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [isLikedLoading, setIsLikedLoading] = useState(false);

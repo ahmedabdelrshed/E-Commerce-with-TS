@@ -13,7 +13,7 @@ const Products = () => {
   const { error, loading, records } = useAppSelector(
     (state) => state.productsSlice
   );
-  const {itemsId} = useAppSelector(state => state.whishList)
+  const { itemsId } = useAppSelector((state) => state.whishList);
   const cartItems = useAppSelector((state) => state.cart.items);
   const productsWithFullInfo = records.map((record) => ({
     ...record,
@@ -29,7 +29,7 @@ const Products = () => {
 
   return (
     <Container>
-      <Heading><span className="text-capitalize">{ params.prefix}</span> Products</Heading>
+      <Heading title={`${params.prefix} Products`} />
       <Loading error={error} loading={loading}>
         <GridList
           records={productsWithFullInfo}

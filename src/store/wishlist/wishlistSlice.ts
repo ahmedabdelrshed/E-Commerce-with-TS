@@ -58,5 +58,5 @@ const wishlistSlice = createSlice({
     }
 })
 
-export const {productsWishlistCleanUp} = wishlistSlice.actions
+export const { productsWishlistCleanUp } = wishlistSlice.actions
 export default wishlistSlice.reducer
