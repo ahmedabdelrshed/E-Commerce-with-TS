@@ -9,8 +9,9 @@ const useCategories = () => {
       (state) => state.categoriesSlice
     );
     useEffect(() => {
-      dispatch(actGetCategories());
-      return () => {
+    const promise =  dispatch(actGetCategories());
+        return () => {
+        promise.abort();
         dispatch(cleanUpCategories());
       };
     }, [dispatch]);

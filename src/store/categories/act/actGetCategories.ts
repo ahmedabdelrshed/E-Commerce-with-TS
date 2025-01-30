@@ -3,9 +3,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const actGetCategories = createAsyncThunk('categories/getCategories', async (_, thunAPI) => {
-    const { rejectWithValue } = thunAPI
+    const { rejectWithValue ,signal} = thunAPI
     try {
-        const response = await axios.get<ICategory[]>('/categories')
+        const response = await axios.get<ICategory[]>('/categories',{
+            signal
+        })
 
         return response.data
     } catch (error) {

@@ -12,8 +12,9 @@ const useCart = () => {
         (state) => state.cart
     );
     useEffect(() => {
-        dispatch(getProductsByIds());
+        const promise = dispatch(getProductsByIds());
         return () => {
+            promise.abort();
             dispatch(cartItemsCleanUp());
         };
     }, [dispatch]);
