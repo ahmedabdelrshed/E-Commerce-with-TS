@@ -36,6 +36,9 @@ const cartSlice = createSlice({
         removeCartItem: (state, action) => {
             delete state.items[action.payload]
             state.productsInfo = state.productsInfo.filter(product => product.id !== action.payload)
+        },
+        cartItemsCleanUp: (state) => {
+            state.productsInfo = []
         }
 
     },
@@ -63,4 +66,4 @@ export const getCartTotalQuantity = createSelector((state: RootState) => state.c
     return totalItemsQuantity
 })
 export default cartSlice.reducer
-export const { addToCart, changeQuantityOfCartItem,removeCartItem } = cartSlice.actions
+export const { addToCart, changeQuantityOfCartItem, removeCartItem, cartItemsCleanUp } = cartSlice.actions

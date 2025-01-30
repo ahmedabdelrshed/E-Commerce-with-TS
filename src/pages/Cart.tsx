@@ -4,6 +4,7 @@ import CartSubtotalPrice from "@components/eCommerce/cartSubTotalPrice.tsx/CartS
 import Loading from "@components/feedback/Loading/Loading";
 import getProductsByIds from "@store/cart/act/actGetProductsByIds";
 import {
+  cartItemsCleanUp,
   changeQuantityOfCartItem,
   removeCartItem,
 } from "@store/cart/cartSlice";
@@ -17,6 +18,9 @@ const Cart = () => {
   );
   useEffect(() => {
     dispatch(getProductsByIds());
+    return () => {
+      dispatch(cartItemsCleanUp());
+    };
   }, [dispatch]);
   const products = productsInfo.map((product) => ({
     ...product,
@@ -38,16 +42,20 @@ const Cart = () => {
   return (
     <>
       <Heading>Cart</Heading>
-      {products.length ? <>
-        <Loading error={error} loading={loading}>
-        <CartItemList
-          products={products}
-          changeQuantityHandlers={changeQuantityHandlers}
-          removeProductHandler={removeProductHandler}
-        />
-      </Loading>
-      <CartSubtotalPrice products={products}/>
-      </>:"Your cart is empty!!!"}
+      {products.length ? (
+        <>
+          <Loading error={error} loading={loading}>
+            <CartItemList
+              products={products}
+              changeQuantityHandlers={changeQuantityHandlers}
+              removeProductHandler={removeProductHandler}
+            />
+          </Loading>
+          <CartSubtotalPrice products={products} />
+        </>
+      ) : (
+        "Your cart is empty!!!"
+      )}
     </>
   );
 };
