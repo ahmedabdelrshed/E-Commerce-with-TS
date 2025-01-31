@@ -1,5 +1,6 @@
 import { GridList, Heading } from "@components/common";
 import { Product } from "@components/eCommerce";
+import { LottieHandler } from "@components/feedback";
 import Loading from "@components/feedback/Loading/Loading";
 import useWishlist from "@hooks/useWishlist";
 
@@ -15,7 +16,7 @@ const WishList = () => {
             renderItem={(record) => <Product {...record} />}
           />
         ) : (
-          "Your WishList is empty!!!"
+         <LottieHandler type="empty" massage="Your Wishlist is Empty!"/>
         )}
       </Loading>
     </div>

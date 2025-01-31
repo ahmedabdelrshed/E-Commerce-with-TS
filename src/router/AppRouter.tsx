@@ -1,3 +1,6 @@
+import { LottieHandler } from "@components/feedback";
+import PageSuspense from "@components/feedback/PageSuspense/PageSuspense";
+import Error from "@pages/Error";
 import { lazy, Suspense } from "react";
 import {
   createBrowserRouter,
@@ -14,7 +17,6 @@ const Categories = lazy(() => import("@pages/Categories"));
 const AboutUs = lazy(() => import("@pages/AboutUs"));
 const Login = lazy(() => import("@pages/Login"));
 const Register = lazy(() => import("@pages/Register"));
-const Error = lazy(() => import("@pages/Error"));
 const Products = lazy(() => import("@pages/Products"));
 const Cart = lazy(() => import("@pages/Cart"));
 const WishList = lazy(() => import("@pages/WishList"));
@@ -25,7 +27,11 @@ const router = createBrowserRouter(
       <Route
         path="/"
         element={
-          <Suspense fallback={<div>Loading Please Wait ...</div>}>
+          <Suspense  fallback={
+            <div style={{ marginTop: "10%" }}>
+              <LottieHandler type="loading" massage="Loading please wait..." />
+            </div>
+          }>
             <MainLayout />
           </Suspense>
         }
@@ -35,17 +41,17 @@ const router = createBrowserRouter(
         <Route
           path="categories"
           element={
-            <Suspense fallback={<div>Loading Please Wait ...</div>}>
+            <PageSuspense>
               <Categories />
-            </Suspense>
+            </PageSuspense>
           }
         />
         <Route
           path="categories/products/:prefix"
           element={
-            <Suspense fallback={<div>Loading Please Wait ...</div>}>
+            <PageSuspense>
               <Products />
-            </Suspense>
+            </PageSuspense>
           }
           loader={({ params }) => {
             if (
@@ -63,41 +69,41 @@ const router = createBrowserRouter(
         <Route
           path="about-us"
           element={
-            <Suspense fallback={<div>Loading Please Wait ...</div>}>
+            <PageSuspense>
               <AboutUs />
-            </Suspense>
+            </PageSuspense>
           }
         />
         <Route
           path="/cart"
           element={
-            <Suspense fallback={<div>Loading Please Wait ...</div>}>
+            <PageSuspense>
               <Cart />
-            </Suspense>
+            </PageSuspense>
           }
         />
         <Route
           path="/wishlist"
           element={
-            <Suspense fallback={<div>Loading Please Wait ...</div>}>
+            <PageSuspense>
               <WishList />
-            </Suspense>
+            </PageSuspense>
           }
         />
         <Route
           path="login"
           element={
-            <Suspense fallback={<div>Loading Please Wait ...</div>}>
+            <PageSuspense>
               <Login />
-            </Suspense>
+            </PageSuspense>
           }
         />
         <Route
           path="register"
           element={
-            <Suspense fallback={<div>Loading Please Wait ...</div>}>
+            <PageSuspense>
               <Register />
-            </Suspense>
+            </PageSuspense>
           }
         />
       </Route>

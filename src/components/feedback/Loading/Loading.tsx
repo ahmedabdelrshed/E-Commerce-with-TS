@@ -2,6 +2,7 @@ import { TLoading } from "@customTypes/index";
 import CategorySkeleton from "../skeletons/CategorySkeleton";
 import ProductSkeleton from "../skeletons/ProductSkeleton";
 import CartSkeleton from "../skeletons/CartSkeleton";
+import LottieHandler from "../LottieHandler/LottieHandler";
 const skeletonTypes = {
   product: ProductSkeleton,
   category: CategorySkeleton,
@@ -24,7 +25,7 @@ const Loading = ({
     return <SkeletonComponent />;
   }
   if (loading === "failed") {
-    return <div>{error}</div>;
+    return <LottieHandler type="error" massage={error as string} />;
   }
   if (loading === "succeeded") {
     return children;
