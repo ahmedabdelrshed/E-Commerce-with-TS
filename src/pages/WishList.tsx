@@ -8,7 +8,7 @@ const WishList = () => {
   return (
     <div>
       <Heading title="Your Wishlist" />
-      <Loading error={error} loading={loading}>
+      <Loading error={error} loading={loading} type="product">
         {productsFullInfo.length ? (
           <GridList
             records={productsWithFullInfo}

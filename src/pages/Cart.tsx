@@ -15,20 +15,21 @@ const Cart = () => {
   return (
     <>
       <Heading title="Cart" />
-      {products.length ? (
-        <>
-          <Loading error={error} loading={loading}>
+
+      <>
+        <Loading error={error} loading={loading} type="cart">
+          {products.length ? (
             <CartItemList
               products={products}
               changeQuantityHandlers={changeQuantityHandlers}
               removeProductHandler={removeProductHandler}
             />
-          </Loading>
-          <CartSubtotalPrice products={products} />
-        </>
-      ) : (
-        "Your cart is empty!!!"
-      )}
+          ) : (
+            "Your cart is empty!!!"
+          )}
+        </Loading>
+        <CartSubtotalPrice products={products} />
+      </>
     </>
   );
 };

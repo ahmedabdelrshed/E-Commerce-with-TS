@@ -11,7 +11,7 @@ const Products = () => {
   return (
     <Container>
       <Heading title={`${productsPrefix?.toLocaleUpperCase()} Products`} />
-      <Loading error={error} loading={loading}>
+      <Loading error={error} loading={loading} type="product">
         <GridList
           records={productsWithFullInfo}
           renderItem={(record) => <Product {...record} />}
